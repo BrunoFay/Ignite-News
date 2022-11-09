@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '../../public/images/logo.svg'
 import styles from './styles.module.scss'
+import SigningButton from '../SigningButton'
 
 export default function Header() {
   return (
@@ -15,6 +16,7 @@ export default function Header() {
           </Link>
           <Link href="#">Post</Link>
         </nav>
+        <SigningButton />
       </div>
     </header>
   )
