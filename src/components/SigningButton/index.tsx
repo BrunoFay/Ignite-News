@@ -13,7 +13,7 @@ export default function SigningButton() {
     </button>
   ) : (
     <button className={styles.singInButton}>
-      <FaGithub color="#eba417" />
+      <FaGithub color="#A717EB" />
       Sign in with Github
     </button>
   )
