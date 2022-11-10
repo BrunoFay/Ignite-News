@@ -1,5 +1,7 @@
 import NextAuth from 'next-auth'
+import { query as q } from 'faunadb'
 import GithubProvider from 'next-auth/providers/github'
+import { fauna } from '../../../libs/faunadb'
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -10,5 +12,19 @@ export const authOptions = {
     }),
     // ...add more providers here
   ],
+  callbacks: {
+    async jwt({ token, user, account, profile, isNewUser }: any) {
+      return token
+    },
+    async signIn({ user, account, profile, e, credentials }: any) {
+      const { email } = user
+      try {
+        await fauna.query(q.Create(q.Collection('Users'), { data: { email } }))
+        return true
+      } catch (error) {
+        return false
+      }
+    },
+  },
 }
 export default NextAuth(authOptions)
