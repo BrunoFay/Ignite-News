@@ -19,7 +19,15 @@ export const authOptions = {
     async signIn({ user, account, profile, e, credentials }: any) {
       const { email } = user
       try {
-        await fauna.query(q.Create(q.Collection('Users'), { data: { email } }))
+        await fauna.query(
+          q.If(
+            q.Not(
+              q.Exists(q.Match(q.Index('user_by_email'), q.Casefold(email))),
+            ),
+            q.Create(q.Collection('Users'), { data: { email } }),
+            q.Get(q.Match(q.Index('user_by_email'), q.Casefold(email))),
+          ),
+        )
         return true
       } catch (error) {
         return false
