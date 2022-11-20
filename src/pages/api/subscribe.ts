@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     customer: stripeCustomer.id,
     payment_method_types: ['card'],
     billing_address_collection: 'required',
-    line_items: [{ price: 'price_1M2K0ECE9RrEGdXN0uLeWIK0' }],
+    line_items: [{ price: 'price_1M2K0ECE9RrEGdXN0uLeWIK0', quantity: 1 }],
     mode: 'subscription',
     allow_promotion_codes: true,
     success_url: process.env.STRIPE_SUCCESS_URL!,
