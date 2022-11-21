@@ -8,16 +8,11 @@ interface PrismicContext {
   previewData: PreviewData
 }
 
-// todo need refactory
-interface PrismicResolver {
-  [key: string]: any
-}
-
 export const endpoint = sm.apiEndpoint
 export const repositoryName = prismic.getRepositoryName(endpoint)
 
 // Update the Link Resolver to match your project's route structure
-export function linkResolver(doc: PrismicResolver) {
+export function linkResolver(doc: any) {
   switch (doc.type) {
     case 'posts':
       return `/${doc.uid}`

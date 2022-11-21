@@ -41,11 +41,11 @@ export default function Posts({ posts }: PostsProps) {
 export async function getServerSideProps({ previewData }: any) {
   const client = createClient({ previewData })
 
-  const response = await client.getAllByType('posts', {
+  const getPosts = await client.getAllByType('posts', {
     pageSize: 100,
   })
 
-  const posts = response?.map((post: any) => {
+  const posts = getPosts?.map((post: any) => {
     return {
       slug: post.uid,
       title: post.data.title,
