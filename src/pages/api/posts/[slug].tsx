@@ -53,7 +53,7 @@ export const getServerSideProps = async ({
   params,
   req,
 }: ServerSideProps) => {
-  const session: any = await getSession({ req })
+  const session = await getSession({ req })
 
   if (!session?.activeSubscription) {
     return {
