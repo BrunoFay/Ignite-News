@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import Logo from '../../public/images/logo.svg'
 import styles from './styles.module.scss'
 import SigningButton from '../SigningButton'
+import { ActiveLink } from '../ActiveLink'
 
 export default function Header() {
   return (
@@ -11,10 +11,12 @@ export default function Header() {
       <div className={styles.headerContent}>
         <Image src={Logo} alt="ig news" />
         <nav>
-          <Link className={styles.active} href="#">
+          <ActiveLink activeClassName={styles.active} href="/">
             Home
-          </Link>
-          <Link href="#">Post</Link>
+          </ActiveLink>
+          <ActiveLink activeClassName={styles.active} href="/posts">
+            Post
+          </ActiveLink>
         </nav>
         <SigningButton />
       </div>
